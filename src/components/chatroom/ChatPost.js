@@ -31,8 +31,8 @@ export class ChatPost extends React.Component {
     }
 
     handleSubmit = (event) => {
-        console.log(this.state);
         event.preventDefault();
+        this.props.onMessage(this.state);
     }
 
     render() {

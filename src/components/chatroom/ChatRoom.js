@@ -14,8 +14,9 @@ export class ChatRoom extends React.Component {
     }
 
     componentDidMount() {
-        let ws = new WebSocket("wss://imr3-react.herokuapp.com")
-
+        console.log("EQRFOIESFH EIFH IES")
+        const ws = new WebSocket("wss://imr3-react.herokuapp.com")
+        
         ws.onopen = () => {
             console.log("connected");
             this.setState({
@@ -26,8 +27,7 @@ export class ChatRoom extends React.Component {
 
         ws.onmessage = evt => {
             const messages = JSON.parse(evt.data);
-            messages.map(message => this.addMessage(message));
-            console.log(messages);
+            messages.map(message => this.readMessage(message));
         };
         
         ws.onclose = () => {
@@ -39,8 +39,13 @@ export class ChatRoom extends React.Component {
         };
     }
 
-    addMessage(message) {
-        console.log(message)
+
+    readMessage(message) {
+        console.log(message);
+    }
+
+    writeMessage(message) {
+        this.state.ws.send(JSON.stringify(message));
     }
     
 
@@ -48,7 +53,9 @@ export class ChatRoom extends React.Component {
         return (
             <div>
                 <h6>Je suis là</h6>
-                <ChatPost />
+                <ChatPost 
+                    onMessage={this.writeMessage.bind(this)}
+                />
             </div>
         );
     }
