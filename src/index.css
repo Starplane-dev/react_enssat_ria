@@ -16,3 +16,15 @@ code {
   height: 600px;
   width: 600px;
 }
+
+
+#player {
+  max-height: 600px;
+}
+
+.list-group{
+  max-height: 450px;
+  margin-bottom: 10px;
+  overflow-y:scroll;
+  -webkit-overflow-scrolling: touch;
+}

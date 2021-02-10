@@ -18,10 +18,9 @@ export class Keyword extends React.Component {
         })        
 
         return (
-            <div>
-                <h3>Keywords :</h3>
-                <p></p>
-                <ul>
+            <div className="d-flex flex-column justify-content-center align-items-center ml-2">
+                <h3>Keywords</h3>
+                <ul className="d-flex flex-column mt-3">
                     {toPrint.map((element) => (
                         element.data.map((data, index) => (
                             <p key={index}>{data.title} : <a href={data.url}>{data.url}</a></p>

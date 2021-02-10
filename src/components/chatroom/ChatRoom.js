@@ -47,7 +47,7 @@ export class ChatRoom extends React.Component {
     }
 
     readMessage(message) {
-        this.setState(state => ({ messages: [...state.messages, message]}))
+        this.setState(state => ({ messages: [message, ...state.messages]}))
     }
 
     writeMessage(message) {
@@ -56,10 +56,12 @@ export class ChatRoom extends React.Component {
     
     render() {
         return (
-            <div>
-                <ListGroup>
+            <div className="ml-2">
+                <ListGroup variant="flush">
                     {this.state.messages.map((message, index) =>
-                        <ListGroup.Item key={index}>{new Date(message.when).toLocaleTimeString()} - {message.name} : {message.message}</ListGroup.Item>
+                        <ListGroup.Item key={index}> 
+                            <span className="text-muted">{new Date(message.when).toLocaleTimeString()} </span>
+                            <span className="font-weight-bold">{message.name}</span> : {message.message}</ListGroup.Item>
                     )}
                 </ListGroup>
                 <ChatPost 

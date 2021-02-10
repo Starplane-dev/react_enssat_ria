@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
 export class ChatPost extends React.Component {
 
     constructor(props) {
@@ -37,28 +40,25 @@ export class ChatPost extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>        
-                <label>
-                    Pseudo:
-                    <input
-                        name="pseudo"
-                        type="pseudo"
+            <form className="d-flex flex-column justify-content-center mt-3" onSubmit={this.handleSubmit}>        
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Control 
+                        type="pseudo" 
+                        name="pseudo" 
+                        placeholder="Pseudo"
                         value={this.state.pseudo}
                         onChange={this.setPseudo}
                         required />
-                </label>
-                
-                <label>
-                    Message:
-                    <input
-                        name="message"
-                        type="message"
+
+                    <Form.Control 
+                        type="message" 
+                        name="message" 
+                        placeholder="Message"
                         value={this.state.message}
                         onChange={this.setMessage}
                         required />
-                </label>
-        
-                <button>Submit</button>
+                </Form.Group>
+                <Button variant="secondary" type="submit">Submit</Button>
             </form>
         );
     }

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Button from 'react-bootstrap/Button'
+
 export class Chapter extends React.Component {
 
     static propTypes = {
@@ -13,9 +15,9 @@ export class Chapter extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Chapters :</h3>
-                <ul>
+            <div className="d-flex flex-column justify-content-center align-items-center">
+                <h3>Chapters</h3>
+                <ul className="d-flex flex-column mt-3">
                     {this.props.items.map((element, index) => (
                         <ItemChapter 
                             key = {index}
@@ -40,8 +42,7 @@ export class ItemChapter extends React.Component {
 
     render() {
         return (
-            <button onClick={this.click}>{this.props.elt.title}</button>
+            <Button className="mb-1" onClick={this.click} variant="dark">{this.props.elt.title}</Button>
         )
     }
-
 }

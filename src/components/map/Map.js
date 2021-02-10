@@ -27,25 +27,30 @@ export class Map extends react.Component {
         L.Marker.prototype.options.icon = DefaultIcon;
         
         return (
-            <MapContainer center={[36.123240, -95.814561]} zoom={4} scrollWheelZoom={false}>
-                <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {this.props.items.map((element, index) => (
-                    <Marker 
-                        key={index}
-                        position={[element.lat, element.lng]}
-                        eventHandlers={{
-                            click: () => {this.clickMap(element)},
-                        }}
-                    >
-                        <Popup>
-                            {element.label}
-                        </Popup>
-                    </Marker>
-                ))}
-            </MapContainer>
+            <div className="d-flex flex-column justify-content-center align-items-center ml-2">
+                <h3>Cartography</h3>
+                <div class="mt-3">
+                    <MapContainer center={[36.123240, -95.814561]} zoom={4} scrollWheelZoom={false}>
+                        <TileLayer
+                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        {this.props.items.map((element, index) => (
+                            <Marker 
+                                key={index}
+                                position={[element.lat, element.lng]}
+                                eventHandlers={{
+                                    click: () => {this.clickMap(element)},
+                                }}
+                            >
+                                <Popup>
+                                    {element.label}
+                                </Popup>
+                            </Marker>
+                        ))}
+                    </MapContainer>
+                </div>
+            </div>
         );
     }
 
