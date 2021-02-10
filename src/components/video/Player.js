@@ -63,6 +63,7 @@ export class MyPlayer extends React.Component {
                             <Chapter 
                                 items = {film.Chapters}
                                 onClick = {this.getChapterPos.bind(this)}
+                                currentTime = {this.state.player ? this.state.player.currentTime : 0}
                             />
                             <Map
                                 items = {film.Waypoints}

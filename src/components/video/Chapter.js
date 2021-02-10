@@ -7,6 +7,7 @@ export class Chapter extends React.Component {
 
     static propTypes = {
         items: PropTypes.array.isRequired,
+        currentTime: PropTypes.number.isRequired
     };
 
     handleClick(param) {
@@ -22,7 +23,8 @@ export class Chapter extends React.Component {
                         <ItemChapter 
                             key = {index}
                             elt = {element}
-                            onClick = {this.handleClick.bind(this)}/>
+                            onClick = {this.handleClick.bind(this)}
+                            currentTime = {this.props.currentTime}/>
                     ))}
                 </ul>
             </div>
@@ -34,6 +36,7 @@ export class ItemChapter extends React.Component {
 
     static propTypes = {
         elt: PropTypes.object.isRequired,
+        currentTime: PropTypes.number.isRequired
     };
 
     click = () => {
@@ -41,8 +44,13 @@ export class ItemChapter extends React.Component {
     }
 
     render() {
+        let variant = "dark";
+        if(this.props.elt.pos <= this.props.currentTime) {
+            variant = "light";
+        }
+
         return (
-            <Button className="mb-1" onClick={this.click} variant="dark">{this.props.elt.title}</Button>
+            <Button className="mb-1" onClick={this.click} variant={variant}>{this.props.elt.title}</Button>
         )
     }
 }
