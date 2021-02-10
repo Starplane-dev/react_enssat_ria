@@ -66,7 +66,9 @@ export class MyPlayer extends React.Component {
                         />
                     </div>
                     <div>
-                        <ChatRoom />
+                        <ChatRoom
+                            currentTime = {this.state.player ? this.state.player.currentTime : 0}
+                        />
                     </div>
                 </div>
             );

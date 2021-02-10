@@ -1,7 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import ListGroup from 'react-bootstrap/ListGroup';
+
 import { ChatPost } from './ChatPost';
 
 export class ChatRoom extends React.Component {
+
+    static propTypes = {
+        currentTime: PropTypes.number.isRequired
+    };
 
     constructor(props) {
         super(props);
@@ -9,12 +17,11 @@ export class ChatRoom extends React.Component {
         this.state = {
             connected: false,
             ws: null,
-            listMessages: []
+            messages: []
         }
     }
 
     componentDidMount() {
-        console.log("EQRFOIESFH EIFH IES")
         const ws = new WebSocket("wss://imr3-react.herokuapp.com")
         
         ws.onopen = () => {
@@ -34,30 +41,31 @@ export class ChatRoom extends React.Component {
             console.log("disconnected, reconnect.");
             this.setState({
                 connected: false,
-                ws: null
+                ws: new WebSocket("wss://imr3-react.herokuapp.com")
             });
         };
     }
 
-
     readMessage(message) {
-        console.log(message);
+        this.setState(state => ({ messages: [...state.messages, message]}))
     }
 
     writeMessage(message) {
         this.state.ws.send(JSON.stringify(message));
     }
     
-
     render() {
         return (
             <div>
-                <h6>Je suis là</h6>
+                <ListGroup>
+                    {this.state.messages.map((message, index) =>
+                        <ListGroup.Item key={index}>{new Date(message.when).toLocaleTimeString()} - {message.name} : {message.message}</ListGroup.Item>
+                    )}
+                </ListGroup>
                 <ChatPost 
                     onMessage={this.writeMessage.bind(this)}
                 />
             </div>
         );
     }
-
 }

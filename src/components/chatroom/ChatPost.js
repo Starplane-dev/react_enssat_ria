@@ -39,23 +39,23 @@ export class ChatPost extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>        
                 <label>
-                Pseudo:
-                <input
-                    name="pseudo"
-                    type="pseudo"
-                    value={this.state.pseudo}
-                    onChange={this.setPseudo}
-                    required />
+                    Pseudo:
+                    <input
+                        name="pseudo"
+                        type="pseudo"
+                        value={this.state.pseudo}
+                        onChange={this.setPseudo}
+                        required />
                 </label>
                 
                 <label>
-                Message:
-                <input
-                    name="message"
-                    type="message"
-                    value={this.state.message}
-                    onChange={this.setMessage}
-                    required />
+                    Message:
+                    <input
+                        name="message"
+                        type="message"
+                        value={this.state.message}
+                        onChange={this.setMessage}
+                        required />
                 </label>
         
                 <button>Submit</button>
