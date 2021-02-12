@@ -30,4 +30,4 @@ Au fur et à mesure que la vidéo défile, une liste de mots clés va s'enrichir
 ### Chat
 Un chat permet de discuter avec les autres personnes qui regarde la vidéo.
 
-![Chat de la vidéo](/public/image/chat.png)
+<img src="/public/image/chat.png" alt="Chat" title="Chat" height="75" />
