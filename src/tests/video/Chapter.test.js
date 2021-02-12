@@ -1,18 +1,52 @@
 import React from "react"
-import { render, waitForElement } from "@testing-library/react"
-import { Chapter } from "../../components/video/Chapter"
+import { render, waitFor, fireEvent, screen } from "@testing-library/react"
+import { Chapter, ItemChapter } from "../../components/video/Chapter"
 
-/* afterAll(() => {
-    fetch.mockClear();
-}); */
+const chapterProps = {
+    items: [{
+        pos: "0",
+        title: "Start"
+    },
+    {
+        pos: "1",
+        title: "End"
+    }
+    ],
+    currentTime: 150
+}
+const chapterItemProps = {
+    elt: {
+        pos: "0",
+        title: "Start"
+    },
+    currentTime: 150
+}
 
-test("renders without crashing", () => {
+test("renders without crashing", async () => {
     const div = document.createElement("div");
-    render(<Chapter />, div)
+    await render(<Chapter {...chapterProps} />, div)
 })
 
-test("contains menu after async fetch", async () => {
-    const { container } = render(<Chapter />);
-    const menu = await waitFor(() => container.querySelector(`ul`));
-    expect(menu).toBeInTheDocument();
+test("contains ul", () => {
+    const { container } = render(<Chapter {...chapterProps} />);
+    const ul = container.querySelector(`ul`);
+    expect(ul).toBeInTheDocument();
+})
+
+test("renders chapter items without crashing", async () => {
+    const div = document.createElement("div");
+    await render(<ItemChapter {...chapterItemProps} />, div)
+})
+
+test("contains chapter items", () => {
+    const { container } = render(<ItemChapter {...chapterItemProps} />);
+    const button = container.querySelector(`button`);
+    expect(button).toBeInTheDocument();
+})
+
+test('calls onClick prop when clicked', () => {
+    const handleClick = jest.fn()
+    render(<ItemChapter onClick={handleClick}{...chapterItemProps} />)
+    fireEvent.click(screen.getByText(/Start/i))
+    expect(handleClick).toHaveBeenCalledTimes(1)
 })
