@@ -7,14 +7,15 @@ import L from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-
+// Composant dédié à l'affichage de la carte avec les emplacements marquants
 export class Map extends react.Component {
 
+    // Récupération des éléments cartography
     static propTypes = {
         items: PropTypes.array.isRequired,
     };
 
-
+    // Envoi des informations du marqueur cliqué vers le composant parent (ici Player)
     clickMap(elt) {
         this.props.onClick(elt);
     }
@@ -53,5 +54,4 @@ export class Map extends react.Component {
             </div>
         );
     }
-
 }

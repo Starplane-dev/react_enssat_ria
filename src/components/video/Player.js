@@ -9,6 +9,10 @@ import { ChatRoom } from '../chatroom/ChatRoom';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button'
 
+/* 
+    Composant parent de l'application
+    Composant dédié à afficher tous les autres composants avec en plus le player
+*/
 export class MyPlayer extends React.Component {
 
     constructor(props) {
@@ -23,10 +27,12 @@ export class MyPlayer extends React.Component {
         this.seek = this.seek.bind(this);
     }
 
+    // Récupération du chapitre cliqué
     getChapterPos(chapter) {
         this.seek(chapter.pos);
     }
 
+    // Récupération du marqueur de la carte cliqué
     getMapPos(marker) {
         this.seek(marker.timestamp);
     }
@@ -34,6 +40,7 @@ export class MyPlayer extends React.Component {
     render() {
         const { data_loaded, film } = this.state;
 
+        // On affiche les composants que si on a reçu la réponse du backend avec toutes les infos
         if(data_loaded) {
             return (
                 <div className="container-fluid">
@@ -86,16 +93,19 @@ export class MyPlayer extends React.Component {
         }
     }
 
+    // Mise à jour de notre player pour récupérer le currentTime
     handleStateChange(state) {
         this.setState({
             player: state
         });
     }
 
+    // Permet de mettre le currentTime de la vidéo à la seconde passée en paramètre
     seek(seconds) {
         this.player.seek(seconds);
     }    
 
+    // Une fois le rendering fait, on fait un appel au backend pour récupérer les infos de la vidéo
     componentDidMount() {
         fetch("https://imr3-react.herokuapp.com/backend")
             .then(res => res.json())

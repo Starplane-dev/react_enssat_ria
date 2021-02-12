@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Composant dédié à la liste des mots clés de la vidéo
 export class Keyword extends React.Component {
 
+    // Récupération des mots clés provenant du backend avec le temps de la vidéo
     static propTypes = {
         items: PropTypes.array.isRequired,
         currentTime: PropTypes.number.isRequired
@@ -10,9 +12,10 @@ export class Keyword extends React.Component {
     
     render() {
 
+        // On compare le temps de la vidéo avec le temps du mots clé
         let toPrint = [];
         this.props.items.map((element) => {
-            if (this.props.currentTime > element.pos) {
+            if (this.props.currentTime > element.pos) { // On affiche le mot clé que si l'evènement est passé dans la vidéo
                 toPrint.push(element);
             }
         })        

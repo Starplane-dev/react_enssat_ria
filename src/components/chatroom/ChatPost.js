@@ -3,6 +3,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+// Composant dédié à la récupération du pseudo et du message de l'utilisateur
 export class ChatPost extends React.Component {
 
     constructor(props) {
@@ -20,10 +21,12 @@ export class ChatPost extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // Appelée à chaque modification dans le <input> dédié au pseudo
     setPseudo = (event) => {
         this.setState({name: event.target.value});
     }
 
+    // Appelée à chaque modification dans le <input> dédié au message
     setMessage = (event) => {
         this.setState(
             {
@@ -33,6 +36,7 @@ export class ChatPost extends React.Component {
             });
     }
 
+    // Envoi du pseudo et message
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.onMessage(this.state);
