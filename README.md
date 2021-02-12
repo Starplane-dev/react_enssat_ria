@@ -1,6 +1,6 @@
 # Projet IMRTube
 
-![header](/public/image/header.png)
+![header](public/image/header.PNG)
 
 ## Membres de l'équipe
 Corentin BOSQUET
