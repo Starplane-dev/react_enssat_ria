@@ -23,6 +23,7 @@ code {
 }
 
 .list-group{
+  max-width: 450px;
   max-height: 450px;
   margin-bottom: 10px;
   overflow-y:scroll;

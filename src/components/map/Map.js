@@ -29,7 +29,7 @@ export class Map extends react.Component {
         return (
             <div className="d-flex flex-column justify-content-center align-items-center ml-2">
                 <h3>Cartography</h3>
-                <div class="mt-3">
+                <div className="mt-3">
                     <MapContainer center={[36.123240, -95.814561]} zoom={4} scrollWheelZoom={false}>
                         <TileLayer
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
