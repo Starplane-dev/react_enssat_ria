@@ -6,12 +6,12 @@
 Corentin BOSQUET
 Quentin GALLIOU
 
-*Tous les deux néophyte avec React)*
+*Tous les deux néophytes avec React)*
 
 ## Fonctionnalités de l'application
 
 ### Player
-Player react qui permet de lire la vidéo
+Player react qui permet de lire la vidéo. Si
 
 ### Chapitrage
 Liste de bouton qui permet de se rendre à des endroits particuliers dans la vidéo.
