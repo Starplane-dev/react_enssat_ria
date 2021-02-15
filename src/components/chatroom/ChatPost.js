@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button'
 // Composant dédié à la récupération du pseudo et du message de l'utilisateur
 export class ChatPost extends React.Component {
 
+    mainInput = null;
+
     constructor(props) {
         super(props);
 
@@ -43,8 +45,10 @@ export class ChatPost extends React.Component {
         this.props.onMessage(this.state);
         this.setState({
             isPseudo: true,
-            message: ''
         });
+        if(this.mainInput !== null) {
+            this.mainInput.value="";
+        }
     }
 
     render() {
@@ -53,10 +57,10 @@ export class ChatPost extends React.Component {
                 <form className="d-flex flex-column justify-content-center mt-3" onSubmit={this.handleSubmit}>        
                     <Form.Group controlId="formBasicEmail">
                         <Form.Control 
+                            ref={(ref) => this.mainInput= ref}
                             type="text" 
                             name="message" 
                             placeholder="Message"
-                            value={this.state.message}
                             onChange={this.setMessage}
                             required />
                     </Form.Group>
@@ -68,10 +72,10 @@ export class ChatPost extends React.Component {
                 <form className="d-flex flex-column justify-content-center mt-3" onSubmit={this.handleSubmit}>        
                     <Form.Group controlId="formBasicEmail">
                         <Form.Control 
+                            ref={(ref) => this.mainInput= ref}
                             type="text" 
                             name="pseudo" 
                             placeholder="Pseudo"
-                            value={this.state.pseudo}
                             onChange={this.setPseudo}
                             required />
 
@@ -79,7 +83,6 @@ export class ChatPost extends React.Component {
                             type="message" 
                             name="message" 
                             placeholder="Message"
-                            value={this.state.message}
                             onChange={this.setMessage}
                             required />
                     </Form.Group>

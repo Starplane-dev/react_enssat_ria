@@ -60,12 +60,14 @@ export class ChatRoom extends React.Component {
     
     render() {
         return (
-            <div className="ml-2">
+            <div className="ml-2 chat">
                 <ListGroup variant="flush">
                     {this.state.messages.map((message, index) =>
-                        <ListGroup.Item key={index}> 
-                            <span className="text-muted">{new Date(message.when).toLocaleTimeString()} </span>
-                            <span className="font-weight-bold">{message.name}</span> : {message.message}</ListGroup.Item>
+                        <ListGroup.Item key={index}>
+                            <span className="text-muted date">{new Date(message.when).toLocaleTimeString()} </span><br />
+                            <span className="font-weight-bold">{message.name} : </span>
+                            <span>{message.message}</span>
+                        </ListGroup.Item>
                     )}
                 </ListGroup>
                 <ChatPost 
