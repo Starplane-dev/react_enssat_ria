@@ -13,7 +13,8 @@ export class ChatPost extends React.Component {
             name: "",
             message: "",
             when: null,
-            moment: null
+            moment: null,
+            isPseudo: false
         }
 
         this.setPseudo = this.setPseudo.bind(this);
@@ -40,30 +41,51 @@ export class ChatPost extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.onMessage(this.state);
+        this.setState({
+            isPseudo: true,
+            message: ''
+        });
     }
 
     render() {
-        return (
-            <form className="d-flex flex-column justify-content-center mt-3" onSubmit={this.handleSubmit}>        
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Control 
-                        type="pseudo" 
-                        name="pseudo" 
-                        placeholder="Pseudo"
-                        value={this.state.pseudo}
-                        onChange={this.setPseudo}
-                        required />
+        if (this.state.isPseudo) {
+            return (
+                <form className="d-flex flex-column justify-content-center mt-3" onSubmit={this.handleSubmit}>        
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control 
+                            type="text" 
+                            name="message" 
+                            placeholder="Message"
+                            value={this.state.message}
+                            onChange={this.setMessage}
+                            required />
+                    </Form.Group>
+                    <Button variant="secondary" type="submit">Submit</Button>
+                </form>
+            );
+        } else {
+            return (
+                <form className="d-flex flex-column justify-content-center mt-3" onSubmit={this.handleSubmit}>        
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control 
+                            type="text" 
+                            name="pseudo" 
+                            placeholder="Pseudo"
+                            value={this.state.pseudo}
+                            onChange={this.setPseudo}
+                            required />
 
-                    <Form.Control 
-                        type="message" 
-                        name="message" 
-                        placeholder="Message"
-                        value={this.state.message}
-                        onChange={this.setMessage}
-                        required />
-                </Form.Group>
-                <Button variant="secondary" type="submit">Submit</Button>
-            </form>
-        );
+                        <Form.Control 
+                            type="message" 
+                            name="message" 
+                            placeholder="Message"
+                            value={this.state.message}
+                            onChange={this.setMessage}
+                            required />
+                    </Form.Group>
+                    <Button variant="secondary" type="submit">Submit</Button>
+                </form>
+            );
+        }
     }
 }
