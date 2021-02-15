@@ -5,6 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 import { ChatPost } from './ChatPost';
 
+// Composant dédié à l'affichage du chat
 export class ChatRoom extends React.Component {
 
     static propTypes = {
@@ -21,6 +22,7 @@ export class ChatRoom extends React.Component {
         }
     }
 
+    // Initialisation de la connexion websocket une fois le rendering fait
     componentDidMount() {
         const ws = new WebSocket("wss://imr3-react.herokuapp.com")
         
@@ -46,10 +48,12 @@ export class ChatRoom extends React.Component {
         };
     }
 
+    // Si message envoyé par un autre utilisateur : récupération et ajout à la liste à afficher
     readMessage(message) {
         this.setState(state => ({ messages: [message, ...state.messages]}))
     }
 
+    // Envoi de notre message au websocket
     writeMessage(message) {
         this.state.ws.send(JSON.stringify(message));
     }
