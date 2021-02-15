@@ -74,6 +74,7 @@ export class MyPlayer extends React.Component {
                             />
                             <Map
                                 items = {film.Waypoints}
+                                currentTime = {this.state.player ? this.state.player.currentTime : 0}
                                 onClick = {this.getMapPos.bind(this)}
                             />
                             <Keyword
