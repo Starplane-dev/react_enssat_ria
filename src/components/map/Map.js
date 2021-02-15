@@ -55,7 +55,7 @@ export class Map extends react.Component {
                                 key={index}
                                 position={[element.lat, element.lng]}
                                 eventHandlers={{
-                                    dblclick: () => {this.clickMap(element); console.log('test')},
+                                    dblclick: () => {this.clickMap(element)},
                                 }}
                             >
                                 <Popup>

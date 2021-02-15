@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button'
 // Composant dédié à la récupération du pseudo et du message de l'utilisateur
 export class ChatPost extends React.Component {
 
+    mainInput = null;
+
     constructor(props) {
         super(props);
 
@@ -13,7 +15,8 @@ export class ChatPost extends React.Component {
             name: "",
             message: "",
             when: null,
-            moment: null
+            moment: null,
+            isPseudo: false
         }
 
         this.setPseudo = this.setPseudo.bind(this);
@@ -40,30 +43,52 @@ export class ChatPost extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.onMessage(this.state);
+        this.setState({
+            isPseudo: true,
+        });
+        if(this.mainInput !== null) {
+            this.mainInput.value="";
+        }
     }
 
     render() {
-        return (
-            <form className="d-flex flex-column justify-content-center mt-3" onSubmit={this.handleSubmit}>        
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Control 
-                        type="pseudo" 
-                        name="pseudo" 
-                        placeholder="Pseudo"
-                        value={this.state.pseudo}
-                        onChange={this.setPseudo}
-                        required />
+        if (this.state.isPseudo) {
+            return (
+                <form className="d-flex flex-column justify-content-center mt-3" onSubmit={this.handleSubmit}>        
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control 
+                            ref={(ref) => this.mainInput= ref}
+                            type="text" 
+                            name="message" 
+                            placeholder="Message"
+                            onChange={this.setMessage}
+                            required />
+                    </Form.Group>
+                    <Button variant="secondary" type="submit">Submit</Button>
+                </form>
+            );
+        } else {
+            return (
+                <form className="d-flex flex-column justify-content-center mt-3" onSubmit={this.handleSubmit}>        
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control 
+                            ref={(ref) => this.mainInput= ref}
+                            type="text" 
+                            name="pseudo" 
+                            placeholder="Pseudo"
+                            onChange={this.setPseudo}
+                            required />
 
-                    <Form.Control 
-                        type="message" 
-                        name="message" 
-                        placeholder="Message"
-                        value={this.state.message}
-                        onChange={this.setMessage}
-                        required />
-                </Form.Group>
-                <Button variant="secondary" type="submit">Submit</Button>
-            </form>
-        );
+                        <Form.Control 
+                            type="message" 
+                            name="message" 
+                            placeholder="Message"
+                            onChange={this.setMessage}
+                            required />
+                    </Form.Group>
+                    <Button variant="secondary" type="submit">Submit</Button>
+                </form>
+            );
+        }
     }
 }

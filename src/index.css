@@ -29,3 +29,11 @@ code {
   overflow-y:scroll;
   -webkit-overflow-scrolling: touch;
 }
+
+.date {
+  font-size: 10px;
+}
+
+.chat {
+  width: 450px;
+}
