@@ -27,7 +27,6 @@ export class ChatRoom extends React.Component {
         const ws = new WebSocket("wss://imr3-react.herokuapp.com")
         
         ws.onopen = () => {
-            console.log("connected");
             this.setState({
                 connected: true,
                 ws: ws
@@ -40,7 +39,6 @@ export class ChatRoom extends React.Component {
         };
         
         ws.onclose = () => {
-            console.log("disconnected, reconnect.");
             this.setState({
                 connected: false,
                 ws: new WebSocket("wss://imr3-react.herokuapp.com")
