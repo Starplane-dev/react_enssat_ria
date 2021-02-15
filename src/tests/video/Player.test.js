@@ -2,6 +2,7 @@ import React from "react"
 import { render, waitForElement } from "@testing-library/react"
 import { MyPlayer } from "../../components/video/Player"
 
+jest.mock('leaflet')
 
 beforeEach(() => {
     jest.spyOn(global, 'fetch').mockImplementation(() => {
@@ -64,4 +65,4 @@ test("contains aside after async fetch", async () => {
     const { container } = render(<MyPlayer />);
     const aside = await waitForElement(() => container.querySelector(`aside`));
     expect(aside).toBeInTheDocument();
-})
+});

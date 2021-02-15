@@ -53,7 +53,6 @@ test('calls onClick prop when clicked', () => {
 
 test("contains dark variant  if pos <= currentTime", () => {
     const { container } = render(<ItemChapter {...chapterItemProps} />);
-    const variant = container.querySelector(`button`).getAttribute('variant');
-    console.log(container);
-    expect(variant).toBe("light");
+    const button = container.querySelector(`Button`);
+    expect(button).toHaveClass('btn-light')
 })

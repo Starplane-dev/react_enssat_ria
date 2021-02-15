@@ -1,5 +1,5 @@
 import React from "react"
-import { render, waitFor, fireEvent, screen } from "@testing-library/react"
+import { render } from "@testing-library/react"
 import { Keyword } from "../../components/video/Keyword"
 
 const keywordsProps = {
