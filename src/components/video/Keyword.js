@@ -26,7 +26,7 @@ export class Keyword extends React.Component {
                 <ul className="d-flex flex-column mt-3">
                     {toPrint.map((element) => (
                         element.data.map((data, index) => (
-                            <p key={index}>{data.title} : <a href={data.url}>{data.url}</a></p>
+                            <p key={index}>{data.title} : <a href={data.url} target='_blank' rel='noreferrer'>{data.url}</a></p>
                         ))
                     ))}
                 </ul>
